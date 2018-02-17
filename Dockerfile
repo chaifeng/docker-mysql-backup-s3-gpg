@@ -2,6 +2,7 @@ FROM mariadb:10.1
 
 ENV AWS_ACCESS_KEY_ID="" \
     AWS_SECRET_ACCESS_KEY="" \
+    AWS_DEFAULT_REGION="us-east-1" \
     AWS_ENDPOINT="" \
     BACKUP_SCHEDULE="0 0 * * *" \
     BACKUP_BUCKET="backup" \

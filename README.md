@@ -53,6 +53,8 @@ This docker image backup and encrypt MySQL databases to S3/Minio periodically.
   the root's password of your mysql database
 
 ### Optional variables
+- `AWS_DEFAULT_REGION`
+  `us-east-1` by default
 - `AWS_ENDPOINT`
   Customize this variable if you are using Minio, the url of your Minio server
 - `PGP_KEYSERVER`
