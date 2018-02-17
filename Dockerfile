@@ -1,4 +1,4 @@
-FROM mariadb:10.2
+FROM mariadb:10.3
 
 ENV AWS_ACCESS_KEY_ID="" \
     AWS_SECRET_ACCESS_KEY="" \
