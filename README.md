@@ -17,7 +17,7 @@ This docker image backup and encrypt MySQL databases to S3/Minio periodically.
            -e MYSQL_USER=your-mysql-username \
            -e MYSQL_PASSWORD="your-mysql-password" \
            --network your-network \
-           chaifeng/mysql-backup
+           chaifeng/mysql-backup-s3-gpg
 
 ### Backup to your own Mino server
 
@@ -33,7 +33,7 @@ This docker image backup and encrypt MySQL databases to S3/Minio periodically.
            -e MYSQL_USER=root \
            -e MYSQL_PASSWORD="your-mysql-password" \
            --network your-network \
-           chaifeng/mysql-backup
+           chaifeng/mysql-backup-s3-gpg
 
 ## Variables
 
