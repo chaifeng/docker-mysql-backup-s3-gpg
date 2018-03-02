@@ -4,13 +4,13 @@ set -eu -o pipefail
 
 BACKUP_SCRIPT="${BASH_SOURCE%/*}/mysql-backup.sh"
 
-if [[ -z "${PGP_KEY}" ]]; then
+if [[ -z "${PGP_KEY:-}" ]]; then
     printf "Fatal: PGP_KEY is empty.\nNeed your PGP key to encrypt files.\nExit in 10 seconds.\n"
     sleep 10
     exit 1
 fi
 
-if [[ -n "$MYSQL_ROOT_PASSWORD" ]]; then
+if [[ -n "${MYSQL_ROOT_PASSWORD:-}" ]]; then
     MYSQL_USER=root
     MYSQL_PASSWORD="$MYSQL_ROOT_PASSWORD"
 fi
