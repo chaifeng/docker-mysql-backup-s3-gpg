@@ -6,7 +6,7 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 source /etc/profile.d/s3.sh
 
-AWS_CLI_OPTS=()
+AWS_CLI_OPTS=(--color off)
 [[ -n "${AWS_ENDPOINT}" ]] && AWS_CLI_OPTS+=(--endpoint-url "$AWS_ENDPOINT")
 
 MYSQLDUMP_OPTS=(-u"${MYSQL_USER}" -p"$MYSQL_PASSWORD")
