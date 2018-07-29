@@ -35,6 +35,39 @@ This docker image backup and encrypt MySQL databases to S3/Minio periodically.
            --network your-network \
            chaifeng/mysql-backup-s3-gpg
 
+### Use a local PGP public key file
+
+    docker run -d --restart unless-stopped \
+           --name mysql_backup \
+           -e AWS_ENDPOINT="https://your.minio.server.example.com" \
+           -e AWS_ACCESS_KEY_ID="your-access-key" \
+           -e AWS_SECRET_ACCESS_KEY="your-secret-access-keys" \
+           -v /path/to/your/pgp-public-key.txt:/pgp.txt \
+           -e PGP_KEY=/pgp.txt \
+           -e BACKUP_SCHEDULE="0 * * * *" \
+           -e MYSQL_DATABASE=your-dbname \
+           -e MYSQL_HOST=your-mysql-container \
+           -e MYSQL_USER=root \
+           -e MYSQL_PASSWORD="your-mysql-password" \
+           --network your-network \
+           chaifeng/mysql-backup-s3-gpg
+
+### Use a remote PGP public key URL
+
+    docker run -d --restart unless-stopped \
+           --name mysql_backup \
+           -e AWS_ACCESS_KEY_ID="your-access-key" \
+           -e AWS_SECRET_ACCESS_KEY="your-secret-access-keys" \
+           -e PGP_KEY=https://example.com/pgp-key.txt \
+           -e BACKUP_SCHEDULE="0 * * * *" \
+           -e MYSQL_DATABASE=your-dbname \
+           -e MYSQL_HOST=your-mysql-container \
+           -e MYSQL_USER=your-mysql-username \
+           -e MYSQL_PASSWORD="your-mysql-password" \
+           --network your-network \
+           chaifeng/mysql-backup-s3-gpg
+
+
 ## Variables
 
 - `AWS_ACCESS_KEY_ID`
@@ -43,6 +76,7 @@ This docker image backup and encrypt MySQL databases to S3/Minio periodically.
   Securet Access Key
 - `PGP_KEY`
   Your PGP public key ID, used to encrypt your backups
+  Can be a PGP key ID or a local filename or a http/https/ftp URL.
 - `MYSQL_HOST`
   the host/ip of your mysql database
 - `MYSQL_USER`
