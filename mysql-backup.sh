@@ -23,9 +23,13 @@ fi
 
 S3_FILENAME="${BACKUP_BUCKET}/$(date "+${BACKUP_PREFIX}${BACKUP_FILENAME}${BACKUP_SUFFIX}")"
 
+function s3() {
+    aws "${AWS_CLI_OPTS[@]}" s3 "$@"
+}
+
 mysqldump "${MYSQLDUMP_OPTS[@]}" \
     | gpg --encrypt -r "${PGP_KEY}" --compress-algo zlib --quiet \
-    | aws "${AWS_CLI_OPTS[@]}" s3 cp - \
-          "s3://${S3_FILENAME}"
+    | s3 cp - "s3://${S3_FILENAME}" \
+    || s3 rm "s3://${S3_FILENAME}"
 
 echo "$S3_FILENAME"
