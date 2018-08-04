@@ -7,7 +7,7 @@ ENV AWS_ACCESS_KEY_ID="" \
     BACKUP_SCHEDULE="0 0 * * *" \
     BACKUP_BUCKET="backup" \
     BACKUP_PREFIX="mysql/%Y/%m/%d/mysql-" \
-    BACKUP_SUFFIX="-%Y%m%d-%H%M.sql.gz.gpg" \
+    BACKUP_SUFFIX="-%Y%m%d-%H%M.sql.gpg" \
     PGP_KEY="" \
     PGP_KEYSERVER="hkp://keys.gnupg.net"
 
@@ -23,6 +23,7 @@ RUN apt-get update \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
     && echo "Done."
 
+COPY README.md /
 COPY *.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
