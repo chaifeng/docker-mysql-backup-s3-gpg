@@ -23,6 +23,7 @@ RUN apt-get update \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
     && echo "Done."
 
+COPY README.md /
 COPY *.sh /usr/local/bin/
 
 ENTRYPOINT ["docker-entrypoint.sh"]
