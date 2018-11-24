@@ -57,9 +57,22 @@ if [[ -f "${PGP_KEY}" ]]; then
   export PGP_KEY
 fi
 
+function receive_gpg_key() {
+  local pgp_key
+  pgp_key="$1"
+
+  declare -a keyservers
+  IFS="|, " read -r -a keyservers <<< "${PGP_KEYSERVER}"
+
+  for server in "${keyservers[@]}"; do
+    gpg --keyserver "${server}" --recv-keys "${pgp_key}" && return 0;
+  done
+  return 1
+}
+
 while ! gpg --list-key "${PGP_KEY}"; do
-    gpg --keyserver "${PGP_KEYSERVER}" --recv-keys "${PGP_KEY}" && break;
-    echo "Error in retriving PGP key ${PGP_KEY}, retry in 5 seconds ..."
+    receive_gpg_key "${PGP_KEY}" && break;
+    echo "Error in retriving PGP key ${PGP_KEY} from ${PGP_KEYSERVER}, retry in 5 seconds ..."
     sleep 5
 done
 
