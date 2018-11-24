@@ -9,7 +9,7 @@ ENV AWS_ACCESS_KEY_ID="" \
     BACKUP_PREFIX="mysql/%Y/%m/%d/mysql-" \
     BACKUP_SUFFIX="-%Y%m%d-%H%M.sql.gpg" \
     PGP_KEY="" \
-    PGP_KEYSERVER="hkp://keys.gnupg.net"
+    PGP_KEYSERVER="hkps://keys.gnupg.net,hkps://pgp.mit.edu,hkps://keyserver.ubuntu.com,hkps://peegeepee.com,hkp://keys.gnupg.net,hkp://pgp.mit.edu,hkp://keyserver.ubuntu.com,hkp://pool.sks-keyservers.net"
 
 #   MYSQL_HOST MYSQL_ROOT_PASSWORD MYSQL_USER MYSQL_PASSWORD MYSQL_DATABASE
 
