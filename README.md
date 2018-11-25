@@ -92,7 +92,7 @@ This docker image backup and encrypt MySQL databases to S3/Minio periodically.
 - `AWS_ENDPOINT`
   Customize this variable if you are using Minio, the url of your Minio server
 - `PGP_KEYSERVER`
-  the PGP key server used to retrieve you PGP public key
+  the PGP key server used to retrieve you PGP public key, supports multiple servers seperated by comma
 - `BACKUP_SCHEDULE`
   the interval of cron job to run mysqldump. `0 0 * * *` by default
 - `BACKUP_BUCKET`
